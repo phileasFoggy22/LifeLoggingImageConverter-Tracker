@@ -1,20 +1,30 @@
 package com.bae.persisitence.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Kayaking extends Activity {
 
+	@Column(length = 50)
 	private String journeyStart;
+	@Column(length = 50)
 	private String journeyEnd;
-	private Date dateCompleted;
+	@Temporal(TemporalType.DATE)
+	private LocalDate dateCompleted;
+	@Column(length = 3)
 	private int durationMins;
 
-	public Kayaking(String lifelogDirectory, String userEmail, String description, String journeyStart,
-			String journeyEnd, Date dateCompleted, int durationMins) {
-		super(lifelogDirectory, userEmail, description);
+	public Kayaking(String lifelogDirectory, String description, String journeyStart, String journeyEnd,
+			LocalDate localDate, int durationMins) {
+		super(lifelogDirectory, description);
 		this.journeyStart = journeyStart;
 		this.journeyEnd = journeyEnd;
-		this.dateCompleted = dateCompleted;
+		this.dateCompleted = localDate;
 		this.durationMins = durationMins;
 	}
 
@@ -34,11 +44,11 @@ public class Kayaking extends Activity {
 		this.journeyEnd = journeyEnd;
 	}
 
-	public Date getDateCompleted() {
+	public LocalDate getDateCompleted() {
 		return dateCompleted;
 	}
 
-	public void setDateCompleted(Date dateCompleted) {
+	public void setDateCompleted(LocalDate dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
 
